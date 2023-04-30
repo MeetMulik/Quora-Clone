@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
     BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Liked"),
     BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
   ];
   PageController _pageController = PageController(initialPage: 0);
   @override
@@ -86,15 +85,7 @@ Widget buildMenuItems(BuildContext context) => Container(
             title: Text("Home"),
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => HomeScreen()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Profile"),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MyProfile()));
+                  .push(MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
           ListTile(
