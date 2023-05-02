@@ -12,7 +12,6 @@ class signUp extends StatefulWidget {
 }
 
 class _signUpState extends State<signUp> {
-  final _formfield = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool passToggle = true;
@@ -29,7 +28,6 @@ class _signUpState extends State<signUp> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
             child: Form(
-              key: _formfield,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,16 +51,6 @@ class _signUpState extends State<signUp> {
                       ),
                       prefixIcon: Icon(Icons.email),
                     ),
-                    validator: (value) {
-                      bool emailValid = RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(value!);
-                      if (value.isEmpty) {
-                        return "Enter Email";
-                      } else if (!emailValid) {
-                        return "Enter Valid Email";
-                      }
-                    },
                   ),
                   SizedBox(height: 20),
                   TextFormField(
@@ -75,43 +63,20 @@ class _signUpState extends State<signUp> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: InkWell(
-                          onTap: () {
-                            setState(() {
-                              passToggle = !passToggle;
-                            });
-                          },
-                          child: Icon(passToggle
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                        )),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter Password";
-                      } else if (passwordController.text.length < 6) {
-                        return "Password must be 6 characters";
-                      }
-                    },
+                        prefixIcon: Icon(Icons.lock)),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {
-                      if (_formfield.currentState!.validate()) {
-                        print("Success");
-                        emailController.clear();
-                        passwordController.clear();
-                      }
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
                         color: Colors.redAccent,
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           "Sign Up",
                           style: TextStyle(

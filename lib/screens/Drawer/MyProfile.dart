@@ -51,14 +51,6 @@ class _MyProfileState extends State<MyProfile> {
                       backgroundImage: NetworkImage(user?.photoURL ?? ""),
                     ),
                     Text(
-                      user?.displayName ?? "Test",
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
                       "Web Developer",
                       style: GoogleFonts.roboto(
                           fontSize: 40, fontWeight: FontWeight.bold),
