@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,8 +11,7 @@ class QuestInputScreen extends StatefulWidget {
 }
 
 class _QuestInputScreenState extends State<QuestInputScreen> {
-  final TextEditingController _controller2 = TextEditingController();
-  final TextEditingController _controller3 = TextEditingController();
+  final TextEditingController _controllerT = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _QuestInputScreenState extends State<QuestInputScreen> {
           children: [
             SizedBox(height: 16.0),
             TextField(
-              controller: _controller2,
+              controller: _controllerT,
               decoration: InputDecoration(
                 labelText: 'Add Question',
                 border: OutlineInputBorder(),
@@ -37,8 +37,8 @@ class _QuestInputScreenState extends State<QuestInputScreen> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () {
-                  String input2 = _controller2.text;
-                  String input3 = _controller3.text;
+                  String input2 = _controllerT.text;
+                  createQuestion(input2);
                 },
                 child: Text('Submit'),
                 style: ElevatedButton.styleFrom(
@@ -52,5 +52,13 @@ class _QuestInputScreenState extends State<QuestInputScreen> {
         ),
       ),
     );
+  }
+
+  Future createQuestion(String input2) async {
+    final docQuestion = FirebaseFirestore.instance.collection('questionsnew');
+    final json = {
+      'question': input2,
+    };
+    await docQuestion.add(json);
   }
 }
