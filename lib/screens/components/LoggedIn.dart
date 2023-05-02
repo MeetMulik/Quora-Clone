@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class LoggedIn extends StatefulWidget {
   const LoggedIn({super.key});
-
   @override
   State<LoggedIn> createState() => _LoggedInState();
 }
@@ -20,3 +19,4 @@ class _LoggedInState extends State<LoggedIn> {
     );
   }
 }
+

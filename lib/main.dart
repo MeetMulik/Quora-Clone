@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       create: (context) => GoogleSignInProvider(),
       child: MaterialApp(
         title: 'Quora',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -47,17 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
           'assets/images/quora.png',
           height: 40,
         ),
-        actions: [
-          TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Skip',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    backgroundColor: Colors.redAccent),
-              ))
-        ],
       ),
       body: Column(
         children: [
@@ -98,7 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: ElevatedButton.icon(
-              onPressed: () {},
               icon: Image.asset(
                 'assets/images/ggl.png',
                 height: 20,
@@ -107,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 'Continue with Google',
                 style: TextStyle(fontSize: 18),
               ),
-              onLongPress: () {
+              onPressed: () {
                 final provider =
                     Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.googleLogin();

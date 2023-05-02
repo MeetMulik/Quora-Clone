@@ -63,18 +63,27 @@ Widget PostCard() => Card(
                 child: InkWell(
                   child: Container(
                       child: Text('Read',
-                          style: TextStyle(color: Colors.redAccent))),
+                          style: TextStyle(
+                              color: Colors.redAccent,
+                              fontWeight: FontWeight.bold))),
                   onTap: () {},
                 ),
+              ), //
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                    child: Icon(
+                  Icons.bookmark_border,
+                  color: Colors.redAccent,
+                )),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  child: Container(
-                      child: Text('Answer',
-                          style: TextStyle(color: Colors.redAccent))),
-                  onTap: () {},
-                ),
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                    child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.redAccent,
+                )),
               ),
             ],
           )

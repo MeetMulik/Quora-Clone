@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screens/Drawer/AnswerScreen.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -10,6 +12,9 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  CollectionReference questions =
+      FirebaseFirestore.instance.collection('questionsnew');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,21 +22,47 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         backgroundColor: Colors.redAccent,
         title: Text("Questions"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            QuestionCard(),
-            QuestionCard(),
-            QuestionCard(),
-            QuestionCard()
-          ],
-        ),
-      ),
+      body: StreamBuilder(
+          stream: questions.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text("Loading");
+            }
+            if (snapshot.connectionState == ConnectionState.active) {
+              QuerySnapshot querySnapshot = snapshot.data;
+              List<QueryDocumentSnapshot> docs = querySnapshot.docs;
+              return ListView.builder(
+                  itemCount: docs.length,
+                  itemBuilder: (context, index) {
+                    QueryDocumentSnapshot document = docs[index];
+                    return QuestionCard(document: document);
+                  });
+            }
+            return Text("No data");
+          }),
     );
   }
 }
 
-Widget QuestionCard() => Card(
+class QuestionCard extends StatefulWidget {
+  const QuestionCard({
+    Key? key,
+    required this.document,
+  }) : super(key: key);
+
+  final QueryDocumentSnapshot<Object?> document;
+
+  @override
+  State<QuestionCard> createState() => _QuestionCardState();
+}
+
+class _QuestionCardState extends State<QuestionCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -41,7 +72,7 @@ Widget QuestionCard() => Card(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'What is the circumference of the earth?',
+              widget.document['question'],
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -56,7 +87,12 @@ Widget QuestionCard() => Card(
                     child: Container(
                         child: Text('Answer',
                             style: TextStyle(color: Colors.redAccent))),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AnswerScreen()));
+                    },
                   ),
                 ),
               ],
@@ -65,3 +101,5 @@ Widget QuestionCard() => Card(
         ),
       ),
     );
+  }
+}

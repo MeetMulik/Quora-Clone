@@ -76,7 +76,7 @@ class _MyProfileState extends State<MyProfile> {
                           EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                       child: ListTile(
                         leading: Icon(
-                          Icons.email,
+                          Icons.person,
                           color: Colors.teal,
                         ),
                         title: Text(
@@ -106,13 +106,6 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                       ),
                     ),
-                    // InfoCard(text: phone, icon: Icons.phone, onPressed: () {}),
-                    // InfoCard(text: url, icon: Icons.web, onPressed: () {}),
-                    // InfoCard(
-                    //     text: location,
-                    //     icon: Icons.location_city,
-                    //     onPressed: () {}),
-                    // InfoCard(text: email, icon: Icons.email, onPressed: () {}),
                   ],
                 ),
               );
