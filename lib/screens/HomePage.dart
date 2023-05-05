@@ -3,13 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_1/screens/Drawer/AddQuestions.dart';
 import 'package:flutter_application_1/screens/Drawer/BookmarksScreen.dart';
 import 'package:flutter_application_1/screens/Drawer/MyProfile.dart';
+import 'package:flutter_application_1/screens/Drawer/QuestInputScreen.dart';
 import 'package:flutter_application_1/screens/Drawer/QuestionsScreen.dart';
-import 'package:flutter_application_1/screens/HomePages/ChatScreen.dart';
+import 'package:flutter_application_1/screens/HomePages/QA.dart';
 import 'package:flutter_application_1/screens/HomePages/HomeScreen.dart';
 import 'package:flutter_application_1/screens/HomePages/LikedScreen.dart';
-import 'package:flutter_application_1/screens/HomePages/ProfileScreen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,8 +24,7 @@ class _HomePageState extends State<HomePage> {
   final _bottomNavigationBarItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
     BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Liked"),
-    BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+    BottomNavigationBarItem(icon: Icon(Icons.question_answer), label: "Q&A"),
   ];
   PageController _pageController = PageController(initialPage: 0);
   @override
@@ -52,8 +52,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           HomeScreen(),
           LikedScreen(),
-          ChatScreen(),
-          ProfileScreen(),
+          QuestionAnswer(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -86,15 +85,7 @@ Widget buildMenuItems(BuildContext context) => Container(
             title: Text("Home"),
             onTap: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => HomeScreen()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Profile"),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => MyProfile()));
+                  .push(MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
           ListTile(
@@ -119,6 +110,14 @@ Widget buildMenuItems(BuildContext context) => Container(
             onTap: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => MyProfile()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.question_mark),
+            title: Text("Add Questions"),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => QuestInputScreen()));
             },
           ),
         ],

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989229765452",
+    "project_id": "quora-flutter",
+    "storage_bucket": "quora-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989229765452:android:0b94b2d2a3dfee0c62b5e9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989229765452-394pj9o08dgvndtic6bpjg4n56vdllj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFOnYG2HPd2wJ44VaLSB_nRvHIvqmlviU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989229765452-394pj9o08dgvndtic6bpjg4n56vdllj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
